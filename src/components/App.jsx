@@ -22,15 +22,15 @@ export default function App() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("form inviato");
-    console.log(inputTitle);
-    console.log(inputGenre);
+    // console.log("form inviato");
+    // console.log(inputTitle);
+    // console.log(inputGenre);
 
     const newMovie = {
       title: inputTitle,
       genre: inputGenre,
     };
-    console.log(newMovie);
+    // console.log(newMovie);
 
     setFilteredMovies([newMovie, ...filteredMovies]);
   }
