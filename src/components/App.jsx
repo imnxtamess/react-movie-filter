@@ -12,7 +12,7 @@ export default function App() {
     // console.log(genreQuery);
     // console.log(titleQuery);
     setFilteredMovies(
-      movieData.filter(
+      filteredMovies.filter(
         (movie) =>
           movie.genre.toLowerCase().includes(genreQuery.toLowerCase()) &&
           movie.title.toLowerCase().includes(titleQuery.toLowerCase())
