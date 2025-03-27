@@ -71,7 +71,7 @@ export default function App() {
               className="genreFilter"
             >
               <option value="">Filtra per genere</option>
-              {movieData.map((movie, index) => (
+              {filteredMovies.map((movie, index) => (
                 <option key={index + 1} value={movie.genre}>
                   {movie.genre}
                 </option>
