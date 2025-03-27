@@ -59,6 +59,18 @@ main {
       }
     }
   }
+  .invalidInputBanner {
+    margin: auto;
+    height: 60px;
+    width: 300px;
+    background-color: rgba(243, 29, 29, 0.712);
+    border-radius: 15px;
+    position: absolute;
+    top: 21.5%;
+    left: 65%;
+    color: var(--movie-light);
+    animation: transizioneBanner 0.75s ease-in-out;
+  }
   select {
     padding: 0.5rem;
     border-radius: 8px;
@@ -79,5 +91,14 @@ main {
   .card {
     background-color: var(--movie-accent);
     color: var(--movie-light);
+  }
+}
+
+@keyframes transizioneBanner {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

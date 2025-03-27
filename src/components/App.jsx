@@ -7,6 +7,7 @@ export default function App() {
   const [genreQuery, setGenreQuery] = useState(""); // store the genreQuery
   const [titleQuery, setTitleQuery] = useState(""); // store the titleQuery
   const [filteredMovies, setFilteredMovies] = useState(movieData); //stores the filteredMovies Array and sets it by default to the original Data array
+  const [invalidInput, setInvalidInput] = useState(false);
 
   useEffect(() => {
     // console.log(genreQuery);
@@ -22,17 +23,21 @@ export default function App() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setInvalidInput(false);
     // console.log("form inviato");
     // console.log(inputTitle);
     // console.log(inputGenre);
+    if (inputTitle.length && inputGenre.length >= 1) {
+      const newMovie = {
+        title: inputTitle,
+        genre: inputGenre,
+      };
+      // console.log(newMovie);
 
-    const newMovie = {
-      title: inputTitle,
-      genre: inputGenre,
-    };
-    // console.log(newMovie);
-
-    setFilteredMovies([newMovie, ...filteredMovies]);
+      setFilteredMovies([newMovie, ...filteredMovies]);
+    } else {
+      setInvalidInput(true);
+    }
   }
 
   return (
@@ -63,7 +68,13 @@ export default function App() {
               </button>
             </form>
           </div>
-
+          <div
+            className={`invalidInputBanner ${
+              invalidInput === false ? "d-none" : "d:block"
+            }`}
+          >
+            Entrambi i campi devono contenere almeno un carattere!
+          </div>
           <div className="filter_container d-flex justify-content-center gap-5 mt-4">
             <select
               onChange={(e) => setGenreQuery(e.target.value)} // change the genreQuery to the selected option
