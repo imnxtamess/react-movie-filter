@@ -2,9 +2,22 @@ import { useState, useEffect } from "react";
 import movieData from "../data/movieData";
 
 export default function App() {
+  const [inputTitle, setInputTitle] = useState(""); // store the inputTitle
+  const [inputGenre, setInputGenre] = useState(""); // store the inputGenre
   const [genreQuery, setGenreQuery] = useState(""); // store the genreQuery
-  const [titleQuery, setTitleQuery] = useState("");
-  const [filteredMovies, setFilteredMovies] = useState(movieData);
+  const [titleQuery, setTitleQuery] = useState(""); // store the titleQuery
+  const [filteredMovies, setFilteredMovies] = useState(movieData); //stores the filteredMovies Array and sets it by default to the original Data array
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(inputTitle);
+    console.log(inputGenre);
+    const newMovie = {
+      title: inputTitle,
+      genre: inputGenre,
+    };
+    console.log(newMovie);
+  }
 
   useEffect(() => {
     console.log(genreQuery);
@@ -24,8 +37,29 @@ export default function App() {
         <h1>Movie List</h1>
       </header>
       <main>
-        <div className="container">
-          <div className="filter_container d-flex justify-content-center gap-4 mt-4">
+        <div className="container text-center">
+          <div className="form-container mt-4">
+            <h2>Aggiungi un film</h2>
+            <span type="submit">+</span>
+            <form onSubmit={() => handleSubmit(e)}>
+              <div className="d-flex mt-3">
+                <input
+                  type="text"
+                  placeholder="Inserisci un titolo..."
+                  value={inputTitle}
+                  onChange={(e) => setInputTitle(e.target.value)}
+                />
+                <input
+                  type="text"
+                  placeholder="Inserisci un genere..."
+                  value={inputGenre}
+                  onChange={(e) => setInputGenre(e.target.value)}
+                />
+              </div>
+            </form>
+          </div>
+
+          <div className="filter_container d-flex justify-content-center gap-5 mt-4">
             <select
               onChange={(e) => setGenreQuery(e.target.value)} // change the genreQuery to the selected option
               name="genreFilter"
@@ -38,18 +72,11 @@ export default function App() {
                 </option>
               ))}
             </select>
-            <select
-              onChange={(e) => setTitleQuery(e.target.value)} // change the titleQuery to the selected option
-              name="titleFilter"
-              className="titleFilter"
-            >
-              <option value="">Filtra per titolo</option>
-              {movieData.map((movie, index) => (
-                <option key={index + 10} value={movie.title}>
-                  {movie.title}
-                </option>
-              ))}
-            </select>
+            <input
+              className="filterInput"
+              type="text"
+              onChange={(e) => setTitleQuery(e.target.value)}
+            />
           </div>
           <div className="row row-cols-3 g-3 mt-2">
             {filteredMovies.map((movie, index) => (
