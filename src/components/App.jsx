@@ -76,6 +76,7 @@ export default function App() {
               className="filterInput"
               type="text"
               onChange={(e) => setTitleQuery(e.target.value)}
+              placeholder="Filtra per titolo..."
             />
           </div>
           <div className="row row-cols-3 g-3 mt-2">

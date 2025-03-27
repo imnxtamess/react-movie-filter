@@ -26,6 +26,9 @@ header {
 
 main {
   .form-container {
+    background-color: var(--movie-main);
+    padding: 2rem;
+    border-radius: 20px;
     h2 {
       color: var(--movie-light);
       display: inline-block;
@@ -35,7 +38,7 @@ main {
       height: 40px;
       width: 40px;
       margin-left: 1rem;
-      background-color: var(--movie-main);
+      background-color: var(--movie-dark);
       color: var(--movie-light);
       border-radius: 10px;
       border: 1px solid var(--movie-accent);
