@@ -56,20 +56,22 @@ main {
         border-radius: 10px;
         border: 1px solid var(--movie-accent);
         font-size: 1.4rem;
+        position: relative;
       }
     }
   }
   .invalidInputBanner {
-    margin: auto;
     height: 60px;
     width: 300px;
-    background-color: rgba(243, 29, 29, 0.712);
+    background-color: var(--movie-accent);
     border-radius: 15px;
     position: absolute;
-    top: 21.5%;
-    left: 65%;
+    transform: translateX(-50%) translateY(-50%);
+    top: 18%;
+    left: 50%;
     color: var(--movie-light);
     animation: transizioneBanner 0.75s ease-in-out;
+    z-index: 1;
   }
   select {
     padding: 0.5rem;

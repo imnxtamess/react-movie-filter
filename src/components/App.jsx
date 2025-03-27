@@ -2,39 +2,40 @@ import { useState, useEffect } from "react";
 import movieData from "../data/movieData";
 
 export default function App() {
+  const [movieList, setMovieList] = useState(movieData); // store the movieData
   const [inputTitle, setInputTitle] = useState(""); // store the inputTitle
   const [inputGenre, setInputGenre] = useState(""); // store the inputGenre
   const [genreQuery, setGenreQuery] = useState(""); // store the genreQuery
   const [titleQuery, setTitleQuery] = useState(""); // store the titleQuery
-  const [filteredMovies, setFilteredMovies] = useState(movieData); //stores the filteredMovies Array and sets it by default to the original Data array
+  const [filteredMovies, setFilteredMovies] = useState(movieList); //stores the filteredMovies Array and sets it by default to movieList date
   const [invalidInput, setInvalidInput] = useState(false);
 
   useEffect(() => {
     // console.log(genreQuery);
     // console.log(titleQuery);
     setFilteredMovies(
-      filteredMovies.filter(
+      movieList.filter(
         (movie) =>
           movie.genre.toLowerCase().includes(genreQuery.toLowerCase()) &&
           movie.title.toLowerCase().includes(titleQuery.toLowerCase())
       )
     );
-  }, [genreQuery, titleQuery]);
+  }, [genreQuery, titleQuery, movieList]);
 
   function handleSubmit(e) {
     e.preventDefault();
     setInvalidInput(false);
-    // console.log("form inviato");
-    // console.log(inputTitle);
-    // console.log(inputGenre);
-    if (inputTitle.length && inputGenre.length >= 1) {
+    console.log("form inviato");
+    console.log(inputTitle);
+    console.log(inputGenre);
+    if (inputTitle.length && inputGenre.length) {
       const newMovie = {
         title: inputTitle,
         genre: inputGenre,
       };
       // console.log(newMovie);
 
-      setFilteredMovies([newMovie, ...filteredMovies]);
+      setMovieList([newMovie, ...movieList]);
     } else {
       setInvalidInput(true);
       setTimeout(() => {
@@ -69,15 +70,16 @@ export default function App() {
               <button className="submitButton" type="submit">
                 +
               </button>
+              <div
+                className={`invalidInputBanner ${
+                  invalidInput === false ? "d-none" : "d:block"
+                }`}
+              >
+                Entrambi i campi devono contenere almeno un carattere!
+              </div>
             </form>
           </div>
-          <div
-            className={`invalidInputBanner ${
-              invalidInput === false ? "d-none" : "d:block"
-            }`}
-          >
-            Entrambi i campi devono contenere almeno un carattere!
-          </div>
+
           <div className="filter_container d-flex justify-content-center gap-5 mt-4">
             <select
               onChange={(e) => setGenreQuery(e.target.value)} // change the genreQuery to the selected option
