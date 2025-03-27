@@ -37,6 +37,9 @@ export default function App() {
       setFilteredMovies([newMovie, ...filteredMovies]);
     } else {
       setInvalidInput(true);
+      setTimeout(() => {
+        setInvalidInput(false);
+      }, 3000);
     }
   }
 
