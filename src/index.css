@@ -1,1 +1,38 @@
 @import "bootstrap";
+
+:root {
+  --movie-dark: #183b4e;
+  --movie-main: #27548a;
+  --movie-light: #f5eedc;
+  --movie-accent: #dda853;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-color: var(--movie-dark);
+}
+
+header {
+  background-color: var(--movie-main);
+  color: var(--movie-accent);
+  height: 90px;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  select {
+    padding: 0.5rem;
+    border-radius: 8px;
+    background-color: var(--movie-main);
+    color: var(--movie-light);
+  }
+  .card {
+    background-color: var(--movie-accent);
+    color: var(--movie-light);
+  }
+}
