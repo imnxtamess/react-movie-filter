@@ -44,6 +44,20 @@ export default function App() {
     }
   }
 
+  const genrelist = [];
+
+  function checkDuplicateGenres() {
+    movieList.forEach((movie) => {
+      console.log(genrelist.includes(movie.genre.toLowerCase()));
+      if (!genrelist.includes(movie.genre.toLowerCase())) {
+        console.log(movie.genre.toLowerCase());
+        genrelist.push(movie.genre.toLowerCase());
+      }
+    });
+    console.log(genrelist);
+  }
+
+  checkDuplicateGenres();
   return (
     <>
       <header className="d-flex">
@@ -87,9 +101,9 @@ export default function App() {
               className="genreFilter"
             >
               <option value="">Filtra per genere</option>
-              {filteredMovies.map((movie, index) => (
-                <option key={index + 1} value={movie.genre}>
-                  {movie.genre}
+              {genrelist.map((movie, index) => (
+                <option key={index + 1} value={movie}>
+                  {movie}
                 </option>
               ))}
             </select>
