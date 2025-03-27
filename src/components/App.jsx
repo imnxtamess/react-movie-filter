@@ -13,6 +13,7 @@ export default function App() {
   useEffect(() => {
     // console.log(genreQuery);
     // console.log(titleQuery);
+
     setFilteredMovies(
       movieList.filter(
         (movie) =>
@@ -25,9 +26,9 @@ export default function App() {
   function handleSubmit(e) {
     e.preventDefault();
     setInvalidInput(false);
-    console.log("form inviato");
-    console.log(inputTitle);
-    console.log(inputGenre);
+    // console.log("form inviato");
+    // console.log(inputTitle);
+    // console.log(inputGenre);
     if (inputTitle.length && inputGenre.length) {
       const newMovie = {
         title: inputTitle,
@@ -48,16 +49,14 @@ export default function App() {
 
   function checkDuplicateGenres() {
     movieList.forEach((movie) => {
-      console.log(genrelist.includes(movie.genre.toLowerCase()));
       if (!genrelist.includes(movie.genre.toLowerCase())) {
-        console.log(movie.genre.toLowerCase());
         genrelist.push(movie.genre.toLowerCase());
       }
     });
-    console.log(genrelist);
   }
 
   checkDuplicateGenres();
+
   return (
     <>
       <header className="d-flex">
