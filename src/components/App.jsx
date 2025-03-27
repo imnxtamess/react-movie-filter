@@ -3,10 +3,17 @@ import movieData from "../data/movieData";
 
 export default function App() {
   const [genreQuery, setGenreQuery] = useState(""); // store the genreQuery
+  const [filteredGenre, setFilteredGenre] = useState(movieData);
 
-  const filteredMovies = movieData.filter((movie) => {
-    return movie.genre.toLowerCase().includes(genreQuery.toLowerCase());
-  });
+  useEffect(() => {
+    console.log(genreQuery);
+    setFilteredGenre(
+      movieData.filter((movie) =>
+        movie.genre.toLowerCase().includes(genreQuery.toLowerCase())
+      )
+    );
+  }, [genreQuery]);
+
   return (
     <>
       <header className="d-flex">
@@ -29,7 +36,7 @@ export default function App() {
             </select>
           </div>
           <div className="row row-cols-3 g-3 mt-2">
-            {filteredMovies.map((movie, index) => (
+            {filteredGenre.map((movie, index) => (
               <div key={index} className="col">
                 <div className="card card-body">
                   <h3>{`TITOLO: ${movie.title}`}</h3>
