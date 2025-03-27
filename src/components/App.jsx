@@ -8,20 +8,9 @@ export default function App() {
   const [titleQuery, setTitleQuery] = useState(""); // store the titleQuery
   const [filteredMovies, setFilteredMovies] = useState(movieData); //stores the filteredMovies Array and sets it by default to the original Data array
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log(inputTitle);
-    console.log(inputGenre);
-    const newMovie = {
-      title: inputTitle,
-      genre: inputGenre,
-    };
-    console.log(newMovie);
-  }
-
   useEffect(() => {
-    console.log(genreQuery);
-    console.log(titleQuery);
+    // console.log(genreQuery);
+    // console.log(titleQuery);
     setFilteredMovies(
       movieData.filter(
         (movie) =>
@@ -30,6 +19,21 @@ export default function App() {
       )
     );
   }, [genreQuery, titleQuery]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log("form inviato");
+    console.log(inputTitle);
+    console.log(inputGenre);
+
+    const newMovie = {
+      title: inputTitle,
+      genre: inputGenre,
+    };
+    console.log(newMovie);
+
+    setFilteredMovies([newMovie, ...filteredMovies]);
+  }
 
   return (
     <>
@@ -40,22 +44,23 @@ export default function App() {
         <div className="container text-center">
           <div className="form-container mt-4">
             <h2>Aggiungi un film</h2>
-            <span type="submit">+</span>
-            <form onSubmit={() => handleSubmit(e)}>
-              <div className="d-flex mt-3">
-                <input
-                  type="text"
-                  placeholder="Inserisci un titolo..."
-                  value={inputTitle}
-                  onChange={(e) => setInputTitle(e.target.value)}
-                />
-                <input
-                  type="text"
-                  placeholder="Inserisci un genere..."
-                  value={inputGenre}
-                  onChange={(e) => setInputGenre(e.target.value)}
-                />
-              </div>
+
+            <form onSubmit={handleSubmit} className="d-flex mt-3">
+              <input
+                type="text"
+                placeholder="Inserisci un titolo..."
+                value={inputTitle}
+                onChange={(e) => setInputTitle(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Inserisci un genere..."
+                value={inputGenre}
+                onChange={(e) => setInputGenre(e.target.value)}
+              />
+              <button className="submitButton" type="submit">
+                +
+              </button>
             </form>
           </div>
 

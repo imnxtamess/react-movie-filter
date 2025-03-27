@@ -33,30 +33,29 @@ main {
       color: var(--movie-light);
       display: inline-block;
     }
-    span {
-      display: inline-block;
-      height: 40px;
-      width: 40px;
-      margin-left: 1rem;
-      background-color: var(--movie-dark);
-      color: var(--movie-light);
-      border-radius: 10px;
-      border: 1px solid var(--movie-accent);
-      font-size: 1.5rem;
-    }
+
     form {
-      div {
-        justify-content: center;
-        gap: 1rem;
-        input {
-          padding: 5px;
-          border-radius: 10px;
+      justify-content: center;
+      gap: 1rem;
+      input {
+        padding: 5px;
+        border-radius: 10px;
+        outline: none;
+        border: none;
+        &:focus {
           outline: none;
-          border: none;
-          &:focus {
-            outline: none;
-          }
         }
+      }
+
+      button {
+        display: inline-block;
+        height: 40px;
+        width: 40px;
+        background-color: var(--movie-dark);
+        color: var(--movie-light);
+        border-radius: 10px;
+        border: 1px solid var(--movie-accent);
+        font-size: 1.4rem;
       }
     }
   }
